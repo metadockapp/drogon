@@ -25,7 +25,7 @@ CMAKE_DEPENDENT_OPTION(USE_SPDLOG "Allow using the spdlog logging library" OFF "
 
 set(DROGON_MAJOR_VERSION 1)
 set(DROGON_MINOR_VERSION 9)
-set(DROGON_PATCH_VERSION 11)
+set(DROGON_PATCH_VERSION 12)
 set(DROGON_VERSION
     ${DROGON_MAJOR_VERSION}.${DROGON_MINOR_VERSION}.${DROGON_PATCH_VERSION})
 set(DROGON_VERSION_STRING "${DROGON_VERSION}")
@@ -133,6 +133,8 @@ if (WIN32)
         ${PROJECT_NAME}
         PRIVATE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/third_party/mman-win32>)
 endif (WIN32)
+
+add_library(Drogon::Drogon ALIAS ${PROJECT_NAME})
 
 if(USE_SUBMODULE)
 add_subdirectory(trantor)
@@ -329,6 +331,7 @@ set(private_headers
     lib/src/ListenerManager.h
     lib/src/PluginsManager.h
     lib/src/SessionManager.h
+    lib/src/utils/ParsingUtils.h
     lib/src/SpinLock.h
     lib/src/StaticFileRouter.h
     lib/src/TaskTimeoutFlag.h
